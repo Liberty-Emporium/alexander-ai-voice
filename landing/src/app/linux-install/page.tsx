@@ -95,7 +95,7 @@ export default function LinuxInstall() {
                 <div className="rounded-lg border border-border bg-card/60 p-4 font-mono text-sm">
                   <div className="text-muted-foreground select-none"># Clone the repo</div>
                   <div>git clone https://github.com/Liberty-Emporium/alexander-ai-voice.git</div>
-                  <div>cd voicebox</div>
+                  <div>cd alexander-ai-voice</div>
                 </div>
 
                 <div className="rounded-lg border border-border bg-card/60 p-4 font-mono text-sm">

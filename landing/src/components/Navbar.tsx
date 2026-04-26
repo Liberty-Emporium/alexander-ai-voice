@@ -36,7 +36,7 @@ export function Navbar() {
         {/* Logo + wordmark */}
         <a href="/" className="flex items-center gap-2.5 justify-self-start">
           <Image
-            src="/voicebox-logo-app.webp"
+            src="/alexander-ai-voice-logo.webp"
             alt="Alexander AI Voice"
             width={28}
             height={28}

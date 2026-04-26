@@ -740,7 +740,7 @@ export function ControlUI() {
                 }}
               >
                 <img
-                  src="/voicebox-logo-app.webp"
+                  src="/alexander-ai-voice-logo.webp"
                   alt=""
                   className="w-full h-full object-contain"
                 />

@@ -29,7 +29,7 @@ export default function OgPreview() {
             }}
           />
           <img
-            src="/voicebox-logo-app.webp"
+            src="/alexander-ai-voice-logo.webp"
             alt=""
             className="relative shrink-0 object-contain"
             style={{ width: 260, height: 260 }}

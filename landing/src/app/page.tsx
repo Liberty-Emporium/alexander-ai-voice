@@ -56,7 +56,7 @@ export default function Home() {
 					>
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<img
-							src="/voicebox-logo-app.webp"
+							src="/alexander-ai-voice-logo.webp"
 							alt="Alexander AI Voice"
 							className="h-full w-full object-contain"
 						/>

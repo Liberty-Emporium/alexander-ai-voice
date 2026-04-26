@@ -124,7 +124,7 @@ export default function DownloadPage() {
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center gap-2.5">
             <Image
-              src="/voicebox-logo-app.webp"
+              src="/alexander-ai-voice-logo.webp"
               alt="Alexander AI Voice"
               width={28}
               height={28}
@@ -146,7 +146,7 @@ export default function DownloadPage() {
         {/* Hero */}
         <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-14">
           <Image
-            src="/voicebox-logo-app.webp"
+            src="/alexander-ai-voice-logo.webp"
             alt="Alexander AI Voice"
             width={200}
             height={200}

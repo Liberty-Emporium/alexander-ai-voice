@@ -12,7 +12,7 @@ export function Footer() {
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
               <Image
-                src="/voicebox-logo-app.webp"
+                src="/alexander-ai-voice-logo.webp"
                 alt="Alexander AI Voice"
                 width={24}
                 height={24}
@@ -126,26 +126,36 @@ export function Footer() {
 
           {/* Also by */}
           <div>
-            <h4 className="text-sm font-semibold mb-3">Also By</h4>
+            <h4 className="text-sm font-semibold mb-3">Our Apps</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="https://spacebot.sh"
+                  href="https://jay-portfolio-production.up.railway.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors"
                 >
-                  Spacebot
+                  EcDash
                 </a>
               </li>
               <li>
                 <a
-                  href="https://spacedrive.com"
+                  href="https://ai-agent-widget-production.up.railway.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors"
                 >
-                  Spacedrive
+                  AI Agent Widget
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://contractor-pro-ai-production.up.railway.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
+                  Contractor Pro AI
                 </a>
               </li>
             </ul>

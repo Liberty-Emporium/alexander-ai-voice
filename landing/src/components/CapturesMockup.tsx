@@ -46,7 +46,7 @@ function Sidebar() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/voicebox-logo-app.webp"
+            src="/alexander-ai-voice-logo.webp"
             alt=""
             className="w-full h-full object-contain"
           />
