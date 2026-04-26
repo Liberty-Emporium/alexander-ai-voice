@@ -50,6 +50,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="overflow-x-hidden">
         <div className="relative min-h-screen bg-background font-sans">{children}</div>
+        {/* Alexander AI Widget — support chat */}
+        <script
+          src="https://ai-agent-widget-production.up.railway.app/widget/alexander-ai-voice.js"
+          async
+        />
       </body>
     </html>
   );
