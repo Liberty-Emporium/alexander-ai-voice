@@ -14,7 +14,7 @@ src = ["."]
 
 # Files/dirs to skip entirely.
 extend-exclude = [
-    "voicebox-server.spec",
+    "alexander-ai-voice-server.spec",
     "build_binary.py",
 ]
 

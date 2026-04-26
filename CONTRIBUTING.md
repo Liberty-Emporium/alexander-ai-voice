@@ -1,6 +1,6 @@
-# Contributing to Voicebox
+# Contributing to Alexander AI Voice
 
-Thank you for your interest in contributing to Voicebox! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to Alexander AI Voice! This document provides guidelines and instructions for contributing.
 
 ## Code of Conduct
 
@@ -91,7 +91,7 @@ On Windows, to build with CUDA support for local testing:
 just build-local  # Build CPU + CUDA server binaries + Tauri installer
 ```
 
-This builds the CPU sidecar (bundled with the app), the CUDA binary (placed in `%APPDATA%/com.voicebox.app/backends/` for runtime GPU switching), and the installable Tauri app.
+This builds the CPU sidecar (bundled with the app), the CUDA binary (placed in `%APPDATA%/com.alexanderaivoice.app/backends/` for runtime GPU switching), and the installable Tauri app.
 
 Creates platform-specific installers (`.dmg`, `.msi`, `.AppImage`) in `tauri/src-tauri/target/release/bundle/`.
 
@@ -389,4 +389,4 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-Thank you for contributing to Voicebox! 🎉
+Thank you for contributing to Alexander AI Voice! 🎉

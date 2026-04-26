@@ -44,7 +44,7 @@ if getattr(sys, 'frozen', False):
 # version check doesn't block for 30+ seconds loading torch etc.
 if "--version" in sys.argv:
     from backend import __version__
-    print(f"voicebox-server {__version__}")
+    print(f"alexander-ai-voice-server {__version__}")
     sys.exit(0)
 
 import logging
@@ -59,7 +59,7 @@ logger = logging.getLogger(__name__)
 
 # Log startup immediately to confirm binary execution
 logger.info("=" * 60)
-logger.info("voicebox-server starting up...")
+logger.info("alexander-ai-voice-server starting up...")
 logger.info(f"Python version: {sys.version}")
 logger.info(f"Executable: {sys.executable}")
 logger.info(f"Arguments: {sys.argv}")
@@ -261,7 +261,7 @@ if __name__ == "__main__":
             parser.error("--parent-pid must be a positive integer")
 
         # Detect backend variant from binary name
-        # voicebox-server-cuda → sets VOICEBOX_BACKEND_VARIANT=cuda
+        # alexander-ai-voice-server-cuda → sets VOICEBOX_BACKEND_VARIANT=cuda
         import os
         binary_name = os.path.basename(sys.executable).lower()
         if "cuda" in binary_name:

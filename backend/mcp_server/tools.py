@@ -1,4 +1,4 @@
-"""Voicebox MCP tool implementations.
+"""Alexander AI Voice MCP tool implementations.
 
 Thin wrappers over existing services/routes. Tools are registered with dotted
 names (``voicebox.speak`` etc.) so they look natural in agent logs —
@@ -33,12 +33,12 @@ MAX_TRANSCRIBE_BYTES = 200 * 1024 * 1024  # 200 MB
 
 
 def register_tools(mcp: FastMCP) -> None:
-    """Attach all Voicebox tools to the given FastMCP instance."""
+    """Attach all Alexander AI Voice tools to the given FastMCP instance."""
 
     @mcp.tool(
         name="voicebox.speak",
         description=(
-            "Speak text in a Voicebox voice profile. Returns a generation id "
+            "Speak text in a Alexander AI Voice voice profile. Returns a generation id "
             "the caller can poll at /generate/{id}/status. Audio plays on the "
             "user's speakers and is saved to the Captures / History tab."
         ),
@@ -72,7 +72,7 @@ def register_tools(mcp: FastMCP) -> None:
                 raise ValueError(
                     "No voice profile resolved. Pass `profile=` with a "
                     "voice profile name or id, or set a default voice in "
-                    "Voicebox → Settings → MCP."
+                    "Alexander AI Voice → Settings → MCP."
                 )
 
             binding = None
@@ -107,7 +107,7 @@ def register_tools(mcp: FastMCP) -> None:
     @mcp.tool(
         name="voicebox.transcribe",
         description=(
-            "Transcribe an audio clip to text using Voicebox's local Whisper. "
+            "Transcribe an audio clip to text using Alexander AI Voice's local Whisper. "
             "Pass exactly one of `audio_base64` (bytes as base64) or "
             "`audio_path` (absolute local file path — loopback callers only)."
         ),
@@ -124,7 +124,7 @@ def register_tools(mcp: FastMCP) -> None:
             )
 
         # Absolute-path mode: validate and transcribe in place. Restricted
-        # to loopback callers so a Voicebox bound on 0.0.0.0 doesn't double
+        # to loopback callers so a Alexander AI Voice bound on 0.0.0.0 doesn't double
         # as an unauthenticated arbitrary-local-file read primitive.
         if audio_path is not None:
             if not request_is_loopback():
@@ -305,7 +305,7 @@ async def _transcribe_file(
     ) and not whisper._is_model_cached(model_size):
         raise ValueError(
             f"Whisper model '{model_size}' is not yet downloaded. Open "
-            "Voicebox → Settings → Models to download it first."
+            "Alexander AI Voice → Settings → Models to download it first."
         )
 
     text = await whisper.transcribe(str(path), language, model_size)

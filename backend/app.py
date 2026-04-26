@@ -216,7 +216,7 @@ async def _run_startup(application: FastAPI) -> None:
     import platform
     import sys
 
-    logger.info("Voicebox v%s starting up", __version__)
+    logger.info("Alexander AI Voice v%s starting up", __version__)
     logger.info(
         "Python %s on %s %s (%s)",
         sys.version.split()[0],
@@ -296,7 +296,7 @@ async def _run_startup(application: FastAPI) -> None:
 
 async def _run_shutdown() -> None:
     """Unload models on lifespan exit."""
-    logger.info("Voicebox server shutting down...")
+    logger.info("Alexander AI Voice server shutting down...")
     try:
         tts.unload_tts_model()
     except Exception:

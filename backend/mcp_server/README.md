@@ -1,10 +1,10 @@
-# Voicebox MCP server
+# Alexander AI Voice MCP server
 
 Local **Model Context Protocol** server — lets any MCP-aware agent
 (Claude Code, Cursor, Windsurf, VS Code MCP extensions, etc.) speak text
 in your cloned voices, transcribe audio, and browse captures.
 
-The server runs inside the same `uvicorn` process as the rest of Voicebox
+The server runs inside the same `uvicorn` process as the rest of Alexander AI Voice
 and is mounted at `/mcp` (Streamable HTTP transport).
 
 ## Install into your agent
@@ -16,20 +16,20 @@ Preferred — direct HTTP:
   "mcpServers": {
     "voicebox": {
       "url": "http://127.0.0.1:17493/mcp",
-      "headers": { "X-Voicebox-Client-Id": "claude-code" }
+      "headers": { "X-Alexander AI Voice-Client-Id": "claude-code" }
     }
   }
 }
 ```
 
 Fallback — stdio shim (when the client doesn't speak HTTP MCP). The
-`voicebox-mcp` binary ships inside the Voicebox.app bundle:
+`voicebox-mcp` binary ships inside the Alexander AI Voice.app bundle:
 
 ```json
 {
   "mcpServers": {
     "voicebox": {
-      "command": "/Applications/Voicebox.app/Contents/MacOS/voicebox-mcp",
+      "command": "/Applications/Alexander AI Voice.app/Contents/MacOS/voicebox-mcp",
       "env": { "VOICEBOX_CLIENT_ID": "claude-code" }
     }
   }
@@ -42,7 +42,7 @@ Claude Code one-liner:
 claude mcp add voicebox \
   --transport http \
   --url http://127.0.0.1:17493/mcp \
-  --header "X-Voicebox-Client-Id: claude-code"
+  --header "X-Alexander AI Voice-Client-Id: claude-code"
 ```
 
 ## Tools
@@ -57,7 +57,7 @@ claude mcp add voicebox \
 All tools resolve voice profiles in this precedence:
 
 1. Explicit `profile` arg (name or id — case-insensitive)
-2. Per-client binding keyed by `X-Voicebox-Client-Id`
+2. Per-client binding keyed by `X-Alexander AI Voice-Client-Id`
 3. `capture_settings.default_playback_voice_id` (global default)
 
 Bindings are managed via `GET|PUT /mcp/bindings` or in the app under
@@ -80,7 +80,7 @@ don't speak MCP (shell scripts, ACP, A2A):
 ```
 curl -X POST http://127.0.0.1:17493/speak \
   -H 'Content-Type: application/json' \
-  -H 'X-Voicebox-Client-Id: claude-code' \
+  -H 'X-Alexander AI Voice-Client-Id: claude-code' \
   -d '{"text":"Build complete.","profile":"Morgan"}'
 ```
 

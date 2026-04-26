@@ -18,23 +18,23 @@ import { SettingRow, SettingSection } from './SettingRow';
 
 function getStdioShimCommand(): string {
   if (typeof navigator === 'undefined') {
-    return '/Applications/Voicebox.app/Contents/MacOS/voicebox-mcp';
+    return '/Applications/Alexander AI Voice.app/Contents/MacOS/voicebox-mcp';
   }
 
   const platform = `${navigator.platform} ${navigator.userAgent}`.toLowerCase();
   if (platform.includes('win')) {
-    return 'C:\\Program Files\\Voicebox\\voicebox-mcp.exe';
+    return 'C:\\Program Files\\Alexander AI Voice\\voicebox-mcp.exe';
   }
   if (platform.includes('linux')) {
     return '/opt/voicebox/voicebox-mcp';
   }
-  return '/Applications/Voicebox.app/Contents/MacOS/voicebox-mcp';
+  return '/Applications/Alexander AI Voice.app/Contents/MacOS/voicebox-mcp';
 }
 
 /**
  * Settings → MCP — configure per-agent voice binding and show copy-paste
  * install snippets for major MCP clients. Backend runs at /mcp on the
- * existing Voicebox server; this page is the agent-onboarding surface.
+ * existing Alexander AI Voice server; this page is the agent-onboarding surface.
  */
 export function MCPPage() {
   const { t } = useTranslation();
@@ -84,7 +84,7 @@ export function MCPPage() {
                 mcpServers: {
                   voicebox: {
                     url: mcpUrl,
-                    headers: { 'X-Voicebox-Client-Id': 'claude-code' },
+                    headers: { 'X-Alexander AI Voice-Client-Id': 'claude-code' },
                   },
                 },
               },
@@ -95,7 +95,7 @@ export function MCPPage() {
           <SnippetRow
             title={t('settings.mcp.install.claudeCode.title')}
             description={t('settings.mcp.install.claudeCode.description')}
-            snippet={`claude mcp add voicebox --transport http --url ${mcpUrl} --header "X-Voicebox-Client-Id: claude-code"`}
+            snippet={`claude mcp add voicebox --transport http --url ${mcpUrl} --header "X-Alexander AI Voice-Client-Id: claude-code"`}
           />
           <SnippetRow
             title={t('settings.mcp.install.stdio.title')}

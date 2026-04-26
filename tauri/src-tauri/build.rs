@@ -84,7 +84,7 @@ fn main() {
             // Generate voicebox.icns from the source PNG via sips + iconutil
             let icns_path = format!("{}/voicebox.icns", gen_dir);
             if !std::path::Path::new(&icns_path).exists() {
-                let source_png = format!("{}/Assets/Voicebox.png", icon_source);
+                let source_png = format!("{}/Assets/Alexander AI Voice.png", icon_source);
                 if std::path::Path::new(&source_png).exists() {
                     let iconset_dir = format!("{}/voicebox.iconset", gen_dir);
                     std::fs::create_dir_all(&iconset_dir).ok();

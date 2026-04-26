@@ -1,6 +1,6 @@
 """Per-request client identity for MCP calls.
 
-MCP clients identify themselves via an ``X-Voicebox-Client-Id`` HTTP header
+MCP clients identify themselves via an ``X-Alexander AI Voice-Client-Id`` HTTP header
 (direct-HTTP clients set it in their MCP config; the stdio shim forwards it
 from the ``VOICEBOX_CLIENT_ID`` env var). Middleware copies the value into a
 ContextVar so tool implementations can read it without plumbing the request
@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 # don't get garbage-collected mid-flight (cf. asyncio.create_task docs).
 _pending_stamps: set[asyncio.Task] = set()
 
-CLIENT_ID_HEADER = "X-Voicebox-Client-Id"
+CLIENT_ID_HEADER = "X-Alexander AI Voice-Client-Id"
 
 # Tool handlers read this to apply per-client voice bindings.
 current_client_id: ContextVar[str | None] = ContextVar(
@@ -54,7 +54,7 @@ def request_is_loopback() -> bool:
     except ValueError:
         return False
 
-# Endpoints that consume X-Voicebox-Client-Id for its MCP-semantic
+# Endpoints that consume X-Alexander AI Voice-Client-Id for its MCP-semantic
 # meaning (per-client profile resolution + per-client default_personality).
 # These are the paths where a stamp into last_seen_at is accurate.
 # Unrelated REST traffic that happens to set the header is intentionally
@@ -73,7 +73,7 @@ _STAMPED_PATH_PREFIXES: tuple[str, ...] = ("/mcp", "/speak")
 
 
 class ClientIdMiddleware(BaseHTTPMiddleware):
-    """Copy X-Voicebox-Client-Id into a ContextVar and stamp last_seen_at
+    """Copy X-Alexander AI Voice-Client-Id into a ContextVar and stamp last_seen_at
     for requests that act on the caller's MCP bindings."""
 
     def __init__(self, app: ASGIApp) -> None:

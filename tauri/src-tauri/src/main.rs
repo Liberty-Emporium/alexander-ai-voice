@@ -35,7 +35,7 @@ fn build_dictate_window(app: &tauri::AppHandle) -> tauri::Result<tauri::WebviewW
         DICTATE_WINDOW_LABEL,
         WebviewUrl::App("?view=dictate".into()),
     )
-    .title("Voicebox Dictate")
+    .title("Alexander AI Voice Dictate")
     .inner_size(DICTATE_WINDOW_WIDTH, DICTATE_WINDOW_HEIGHT)
     .decorations(false)
     .transparent(true)
@@ -119,7 +119,7 @@ pub fn show_dictate_window(app: &tauri::AppHandle) {
 const LEGACY_PORT: u16 = 8000;
 pub(crate) const SERVER_PORT: u16 = 17493;
 
-/// Find a voicebox-server process listening on a given port (Windows only).
+/// Find a alexander-ai-voice-server process listening on a given port (Windows only).
 ///
 /// Uses PowerShell `Get-NetTCPConnection` to look up the PID owning the port,
 /// then verifies via `tasklist` that it's a voicebox process. The caller is
@@ -160,10 +160,10 @@ fn find_voicebox_pid_on_port(port: u16) -> Option<u32> {
     None
 }
 
-/// Check if a Voicebox server is responding on the given port.
+/// Check if a Alexander AI Voice server is responding on the given port.
 ///
 /// Sends an HTTP GET to `/health` and returns `true` only if the response
-/// is valid JSON matching the Voicebox `HealthResponse` schema — specifically
+/// is valid JSON matching the Alexander AI Voice `HealthResponse` schema — specifically
 /// `status` must be `"healthy"`, and both `model_loaded` and `gpu_available`
 /// must be present as booleans. This prevents misidentifying an unrelated
 /// service that happens to expose a `/health` endpoint.
@@ -179,7 +179,7 @@ fn check_health(port: u16) -> bool {
                 if !resp.status().is_success() {
                     return false;
                 }
-                // Parse as JSON and validate Voicebox-specific fields
+                // Parse as JSON and validate Alexander AI Voice-specific fields
                 match resp.json::<serde_json::Value>() {
                     Ok(body) => {
                         body.get("status").and_then(|v| v.as_str()) == Some("healthy")
@@ -239,7 +239,7 @@ async fn start_server(
                     let pid_str = parts[1];
                     if command.contains("voicebox") {
                         if let Ok(pid) = pid_str.parse::<u32>() {
-                            println!("Found existing voicebox-server on port {} (PID: {}), reusing it", SERVER_PORT, pid);
+                            println!("Found existing alexander-ai-voice-server on port {} (PID: {}), reusing it", SERVER_PORT, pid);
                             // Store the PID so we can kill it on exit if needed
                             *state.server_pid.lock().unwrap() = Some(pid);
                             return Ok(format!("http://127.0.0.1:{}", SERVER_PORT));
@@ -247,15 +247,15 @@ async fn start_server(
                     } else {
                         // Process name doesn't contain "voicebox" — could be an external
                         // Python/uvicorn/Docker server. Verify via HTTP health check.
-                        println!("Port {} in use by '{}' (PID: {}), checking if it's a Voicebox server...", SERVER_PORT, command, pid_str);
+                        println!("Port {} in use by '{}' (PID: {}), checking if it's a Alexander AI Voice server...", SERVER_PORT, command, pid_str);
                         if check_health(SERVER_PORT) {
                             println!("Health check passed — reusing external server on port {}", SERVER_PORT);
                             return Ok(format!("http://127.0.0.1:{}", SERVER_PORT));
                         }
-                        println!("Health check failed — port is occupied by a non-Voicebox process");
+                        println!("Health check failed — port is occupied by a non-Alexander AI Voice process");
                         return Err(format!(
                             "Port {} is already in use by another application ({}). \
-                             Close it or change the Voicebox server port.",
+                             Close it or change the Alexander AI Voice server port.",
                             SERVER_PORT, command
                         ));
                     }
@@ -273,26 +273,26 @@ async fn start_server(
         ).is_ok() {
             // Port is in use — check if it's a voicebox process by name first
             if let Some(pid) = find_voicebox_pid_on_port(SERVER_PORT) {
-                println!("Found existing voicebox-server on port {} (PID: {}), reusing it", SERVER_PORT, pid);
+                println!("Found existing alexander-ai-voice-server on port {} (PID: {}), reusing it", SERVER_PORT, pid);
                 *state.server_pid.lock().unwrap() = Some(pid);
                 return Ok(format!("http://127.0.0.1:{}", SERVER_PORT));
             }
             // Process name doesn't match — could be an external Python/Docker server.
             // Verify via HTTP health check before giving up.
-            println!("Port {} in use by unknown process, checking if it's a Voicebox server...", SERVER_PORT);
+            println!("Port {} in use by unknown process, checking if it's a Alexander AI Voice server...", SERVER_PORT);
             if check_health(SERVER_PORT) {
                 println!("Health check passed — reusing external server on port {}", SERVER_PORT);
                 return Ok(format!("http://127.0.0.1:{}", SERVER_PORT));
             }
             return Err(format!(
                 "Port {} is already in use by another application. \
-                 Close the other application or change the Voicebox port.",
+                 Close the other application or change the Alexander AI Voice port.",
                 SERVER_PORT
             ));
         }
     }
 
-    // Kill any orphaned voicebox-server from previous session on legacy port 8000
+    // Kill any orphaned alexander-ai-voice-server from previous session on legacy port 8000
     // This handles upgrades from older versions that used a fixed port
     #[cfg(unix)]
     {
@@ -310,7 +310,7 @@ async fn start_server(
                     
                     if command.contains("voicebox") {
                         if let Ok(pid) = pid_str.parse::<i32>() {
-                            println!("Found orphaned voicebox-server on legacy port {} (PID: {}, CMD: {}), killing it...", LEGACY_PORT, pid, command);
+                            println!("Found orphaned alexander-ai-voice-server on legacy port {} (PID: {}, CMD: {}), killing it...", LEGACY_PORT, pid, command);
                             let _ = Command::new("kill")
                                 .args(["-9", "--", &format!("-{}", pid)])
                                 .output();
@@ -334,7 +334,7 @@ async fn start_server(
             std::time::Duration::from_secs(1),
         ).is_ok() {
             if let Some(pid) = find_voicebox_pid_on_port(LEGACY_PORT) {
-                println!("Found orphaned voicebox-server on legacy port {} (PID: {}), killing it...", LEGACY_PORT, pid);
+                println!("Found orphaned alexander-ai-voice-server on legacy port {} (PID: {}), killing it...", LEGACY_PORT, pid);
                 let _ = std::process::Command::new("taskkill")
                     .args(["/PID", &pid.to_string(), "/T", "/F"])
                     .output();
@@ -356,7 +356,7 @@ async fn start_server(
         .map_err(|e| format!("Failed to create data dir: {}", e))?;
 
     println!("=================================================================");
-    println!("Starting voicebox-server sidecar");
+    println!("Starting alexander-ai-voice-server sidecar");
     println!("Data directory: {:?}", data_dir);
     println!("Remote mode: {}", remote.unwrap_or(false));
 
@@ -364,9 +364,9 @@ async fn start_server(
     let cuda_binary = {
         let cuda_dir = data_dir.join("backends").join("cuda");
         let cuda_name = if cfg!(windows) {
-            "voicebox-server-cuda.exe"
+            "alexander-ai-voice-server-cuda.exe"
         } else {
-            "voicebox-server-cuda"
+            "alexander-ai-voice-server-cuda"
         };
         let exe_path = cuda_dir.join(cuda_name);
         if exe_path.exists() {
@@ -381,7 +381,7 @@ async fn start_server(
                 .output()
             {
                 Ok(output) => {
-                    // Output format: "voicebox-server X.Y.Z\n"
+                    // Output format: "alexander-ai-voice-server X.Y.Z\n"
                     let version_str = String::from_utf8_lossy(&output.stdout);
                     let binary_version = version_str.trim().split_whitespace().last().unwrap_or("");
                     if binary_version == app_version {
@@ -412,7 +412,7 @@ async fn start_server(
         }
     };
 
-    let sidecar_result = app.shell().sidecar("voicebox-server");
+    let sidecar_result = app.shell().sidecar("alexander-ai-voice-server");
 
     let mut sidecar = match sidecar_result {
         Ok(s) => s,
@@ -816,9 +816,9 @@ fn stop_audio_playback(
     state.stop_all_playback()
 }
 
-/// Identifier of the Voicebox app itself — used to short-circuit auto-paste
+/// Identifier of the Alexander AI Voice app itself — used to short-circuit auto-paste
 /// when the user fires a chord while focus was inside one of our own
-/// windows. Paste into Voicebox-internal targets is step 6 territory and
+/// windows. Paste into Alexander AI Voice-internal targets is step 6 territory and
 /// goes through a different (JS-side) injection path.
 ///
 /// Value matches what `focus_capture::capture_focus` writes into
@@ -909,7 +909,7 @@ fn build_chord_bindings(
 /// frontend invokes this both at startup (when `capture_settings.hotkey_enabled`
 /// is true) and from the settings toggle.
 ///
-/// On macOS this is the call that triggers the "Voicebox would like to receive
+/// On macOS this is the call that triggers the "Alexander AI Voice would like to receive
 /// keystrokes from any application" TCC prompt, since keytap's `Tap` creates
 /// the CGEventTap inside `HotkeyMonitor::spawn`.
 #[cfg(desktop)]
@@ -1053,7 +1053,7 @@ fn open_input_monitoring_settings(app: tauri::AppHandle) -> Result<(), String> {
 /// clipboard stuck on the transcript.
 ///
 /// Skips (returns `false`) without touching anything when:
-/// - `focus.bundle_id` is Voicebox itself — step 6 will inject directly
+/// - `focus.bundle_id` is Alexander AI Voice itself — step 6 will inject directly
 ///   into our own webview; pasting would just double-insert or miss the
 ///   real target.
 /// - Accessibility is not trusted — `CGEventPost` would silently drop the
@@ -1071,7 +1071,7 @@ async fn paste_final_text(
     }
     if !accessibility::is_trusted() {
         return Err(
-            "Accessibility permission required for auto-paste. Open System Settings → Privacy & Security → Accessibility and enable Voicebox."
+            "Accessibility permission required for auto-paste. Open System Settings → Privacy & Security → Accessibility and enable Alexander AI Voice."
                 .into(),
         );
     }
@@ -1122,7 +1122,7 @@ async fn debug_focus_roundtrip(
 ) -> Result<serde_json::Value, String> {
     if !accessibility::is_trusted() {
         return Err(
-            "Accessibility permission not granted. Open System Settings → Privacy & Security → Accessibility and enable Voicebox."
+            "Accessibility permission not granted. Open System Settings → Privacy & Security → Accessibility and enable Alexander AI Voice."
                 .into(),
         );
     }
@@ -1169,7 +1169,7 @@ async fn debug_paste_text(
 ) -> Result<serde_json::Value, String> {
     if !accessibility::is_trusted() {
         return Err(
-            "Accessibility permission not granted. Open System Settings → Privacy & Security → Accessibility and enable Voicebox, then try again."
+            "Accessibility permission not granted. Open System Settings → Privacy & Security → Accessibility and enable Alexander AI Voice, then try again."
                 .into(),
         );
     }
@@ -1266,7 +1266,7 @@ pub fn run() {
                 // finishes (rest-fade → hidden). `hide()` alone has been
                 // unreliable for transparent always-on-top windows on macOS
                 // — the NSWindow lingers as an invisible click target that
-                // steals focus to the Voicebox app when the user clicks
+                // steals focus to the Alexander AI Voice app when the user clicks
                 // where it used to be. Park the window off-screen and mark
                 // it click-through as well, so even if `hide()` no-ops the
                 // user sees and interacts with nothing.

@@ -32,16 +32,16 @@ Local dev machines pass `spctl` because the first-party developer context and ca
 
 ## Where the gap is likely to be
 
-Voicebox ships PyInstaller sidecars declared in `tauri.conf.json` under `externalBin`:
+Alexander AI Voice ships PyInstaller sidecars declared in `tauri.conf.json` under `externalBin`:
 
-- **0.4.x:** `voicebox-server` only (single `--onefile` Mach-O on macOS)
-- **0.5.0+:** `voicebox-server` and `voicebox-mcp` (`voicebox-mcp` is new in 0.5.0)
+- **0.4.x:** `alexander-ai-voice-server` only (single `--onefile` Mach-O on macOS)
+- **0.5.0+:** `alexander-ai-voice-server` and `voicebox-mcp` (`voicebox-mcp` is new in 0.5.0)
 
-Tauri's bundler signs each `externalBin` with the configured identity but does not apply `--options=runtime` or `--timestamp` automatically, and does not merge the outer app's entitlements into the sidecar signature. The outer `Voicebox` binary is correctly signed with hardened runtime + `disable-library-validation`; the sidecars likely are not.
+Tauri's bundler signs each `externalBin` with the configured identity but does not apply `--options=runtime` or `--timestamp` automatically, and does not merge the outer app's entitlements into the sidecar signature. The outer `Alexander AI Voice` binary is correctly signed with hardened runtime + `disable-library-validation`; the sidecars likely are not.
 
 Order of likelihood:
 
-1. Sidecar `voicebox-server` lacks hardened runtime or a secure timestamp in its signature.
+1. Sidecar `alexander-ai-voice-server` lacks hardened runtime or a secure timestamp in its signature.
 2. The sidecar inherits the identity but was signed before tauri-action's final notarization pass, so the notarization ticket doesn't actually cover it.
 3. Something inside the sidecar's PyInstaller archive unpacks to a `.dylib` at runtime that Gatekeeper inspects during assessment.
 
@@ -52,11 +52,11 @@ The 0.5.0 fix must cover both sidecars.
 Run against a freshly downloaded release DMG (not a dev build, and from a machine that has never opened the app before):
 
 ```
-hdiutil attach Voicebox_0.4.5_aarch64.dmg
-xcrun stapler validate "/Volumes/Voicebox 0.4.5/Voicebox.app"
-spctl -a -vvv -t open --context context:primary-signature "/Volumes/Voicebox 0.4.5/Voicebox.app"
-codesign --verify --deep --strict --verbose=2 "/Volumes/Voicebox 0.4.5/Voicebox.app"
-codesign -dv --verbose=4 "/Volumes/Voicebox 0.4.5/Voicebox.app/Contents/MacOS/voicebox-server"
+hdiutil attach Alexander AI Voice_0.4.5_aarch64.dmg
+xcrun stapler validate "/Volumes/Alexander AI Voice 0.4.5/Alexander AI Voice.app"
+spctl -a -vvv -t open --context context:primary-signature "/Volumes/Alexander AI Voice 0.4.5/Alexander AI Voice.app"
+codesign --verify --deep --strict --verbose=2 "/Volumes/Alexander AI Voice 0.4.5/Alexander AI Voice.app"
+codesign -dv --verbose=4 "/Volumes/Alexander AI Voice 0.4.5/Alexander AI Voice.app/Contents/MacOS/alexander-ai-voice-server"
 ```
 
 The last command is the tell — look for `flags=0x10000(runtime)` and a `Timestamp=` line. If either is missing, the sidecar is the failure.
@@ -71,7 +71,7 @@ Pull the 0.4.5 DMG on a fresh Sequoia environment or a VM snapshot with no trust
 
 ### Phase 2 — Sign sidecars explicitly in the release workflow
 
-Between tauri-action's build step and the DMG-notarization step already in `release.yml`, add a step that re-signs every `externalBin` present under `Voicebox.app/Contents/MacOS/` with:
+Between tauri-action's build step and the DMG-notarization step already in `release.yml`, add a step that re-signs every `externalBin` present under `Alexander AI Voice.app/Contents/MacOS/` with:
 
 - `--options=runtime` (hardened runtime)
 - `--timestamp` (secure timestamp)
@@ -80,11 +80,11 @@ Between tauri-action's build step and the DMG-notarization step already in `rele
 
 Re-sign the outer `.app` afterward so its seal covers the updated nested signatures.
 
-Covers `voicebox-server` on 0.4.x and both sidecars from 0.5.0 forward.
+Covers `alexander-ai-voice-server` on 0.4.x and both sidecars from 0.5.0 forward.
 
 ### Phase 3 — Re-notarize and staple the `.app`
 
-After sidecars are re-signed the outer bundle's notarization ticket is stale. Submit the `.app` (zipped) to `notarytool`, wait, then `xcrun stapler staple Voicebox.app`. This puts the ticket directly on the `.app` so the `spctl -t open` audit passes without any online ticket lookup.
+After sidecars are re-signed the outer bundle's notarization ticket is stale. Submit the `.app` (zipped) to `notarytool`, wait, then `xcrun stapler staple Alexander AI Voice.app`. This puts the ticket directly on the `.app` so the `spctl -t open` audit passes without any online ticket lookup.
 
 Then rebuild the DMG from the stapled `.app` and keep the existing DMG-level notarize/staple step — it still helps Finder drag-install.
 

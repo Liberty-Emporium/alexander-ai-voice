@@ -16,7 +16,7 @@ import { router } from '@/router';
 import { useLogStore } from '@/stores/logStore';
 import {
   getDefaultServerUrl,
-  isLoopbackVoiceboxServerUrl,
+  isLoopbackAlexander AI VoiceServerUrl,
   useServerStore,
 } from '@/stores/serverStore';
 
@@ -26,10 +26,10 @@ function isDictateView(): boolean {
 }
 
 /**
- * Validate that a health response has the expected Voicebox-specific shape.
+ * Validate that a health response has the expected Alexander AI Voice-specific shape.
  * Prevents misidentifying an unrelated service on the same port.
  */
-function isVoiceboxHealthResponse(health: HealthResponse): boolean {
+function isAlexander AI VoiceHealthResponse(health: HealthResponse): boolean {
   return (
     health?.status === 'healthy' &&
     typeof health.model_loaded === 'boolean' &&
@@ -136,7 +136,7 @@ function MainApp() {
     if (!platform.metadata.isTauri) {
       const serverUrl = getDefaultServerUrl();
       const currentServerUrl = useServerStore.getState().serverUrl;
-      if (currentServerUrl !== serverUrl && isLoopbackVoiceboxServerUrl(currentServerUrl)) {
+      if (currentServerUrl !== serverUrl && isLoopbackAlexander AI VoiceServerUrl(currentServerUrl)) {
         useServerStore.getState().setServerUrl(serverUrl);
       }
       setServerReady(true); // Web assumes server is running
@@ -196,17 +196,17 @@ function MainApp() {
 
         // Fall back to polling: the server may already be running externally
         // (e.g. started via python/uvicorn/Docker). Poll the health endpoint
-        // until it responds with a valid Voicebox payload, then transition to
+        // until it responds with a valid Alexander AI Voice payload, then transition to
         // the main UI.
         console.log('Falling back to health-check polling...');
         const pollInterval = setInterval(async () => {
           try {
             const health = await apiClient.getHealth();
-            if (!isVoiceboxHealthResponse(health)) {
-              console.log('Health response is not from a Voicebox server, keep polling...');
+            if (!isAlexander AI VoiceHealthResponse(health)) {
+              console.log('Health response is not from a Alexander AI Voice server, keep polling...');
               return;
             }
-            console.log('External Voicebox server detected via health check');
+            console.log('External Alexander AI Voice server detected via health check');
             clearInterval(pollInterval);
             setServerReady(true);
           } catch {
@@ -219,7 +219,7 @@ function MainApp() {
           clearInterval(pollInterval);
           serverStartingRef.current = false;
           setStartupError(
-            'Could not connect to a Voicebox server within 2 minutes. ' +
+            'Could not connect to a Alexander AI Voice server within 2 minutes. ' +
               'Please check that the server is running and try again.',
           );
         }, 120_000);
@@ -265,7 +265,7 @@ function MainApp() {
             </div>
             <img
               src={voiceboxLogo}
-              alt="Voicebox"
+              alt="Alexander AI Voice"
               className="w-48 h-48 object-contain animate-fade-in-scale relative z-10"
             />
           </div>

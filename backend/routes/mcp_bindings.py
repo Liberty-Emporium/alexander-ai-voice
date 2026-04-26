@@ -2,7 +2,7 @@
 
 The Settings UI uses these to let users configure distinct voices per
 agent (Claude Code in Morgan, Cursor in Scarlett, ...). The ``client_id``
-column is the same value the MCP client sends in ``X-Voicebox-Client-Id``
+column is the same value the MCP client sends in ``X-Alexander AI Voice-Client-Id``
 (or the stdio shim pulls from ``VOICEBOX_CLIENT_ID``).
 """
 

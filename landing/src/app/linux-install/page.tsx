@@ -4,8 +4,8 @@ import { Navbar } from '@/components/Navbar';
 import { GITHUB_REPO } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Linux Install - Voicebox',
-  description: 'Build Voicebox from source on Linux. Clone, setup, and build in three commands.',
+  title: 'Linux Install - Alexander AI Voice',
+  description: 'Build Alexander AI Voice from source on Linux. Clone, setup, and build in three commands.',
 };
 
 export default function LinuxInstall() {
@@ -94,7 +94,7 @@ export default function LinuxInstall() {
               <div className="space-y-3">
                 <div className="rounded-lg border border-border bg-card/60 p-4 font-mono text-sm">
                   <div className="text-muted-foreground select-none"># Clone the repo</div>
-                  <div>git clone https://github.com/jamiepine/voicebox.git</div>
+                  <div>git clone https://github.com/Liberty-Emporium/alexander-ai-voice.git</div>
                   <div>cd voicebox</div>
                 </div>
 

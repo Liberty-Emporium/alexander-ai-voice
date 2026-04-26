@@ -48,10 +48,10 @@ Search order — **first hit wins**:
 
 | Platform | Path | Build type |
 |----------|------|------------|
-| macOS    | `backend/dist/voicebox-server-cuda/voicebox-server-cuda` | onedir (CUDA, rarely on Mac) |
-| macOS    | `backend/dist/voicebox-server`                          | onefile (CPU) |
-| Windows  | `backend\dist\voicebox-server-cuda\voicebox-server-cuda.exe` | onedir (CUDA) |
-| Windows  | `backend\dist\voicebox-server.exe`                      | onefile (CPU) |
+| macOS    | `backend/dist/alexander-ai-voice-server-cuda/alexander-ai-voice-server-cuda` | onedir (CUDA, rarely on Mac) |
+| macOS    | `backend/dist/alexander-ai-voice-server`                          | onefile (CPU) |
+| Windows  | `backend\dist\alexander-ai-voice-server-cuda\alexander-ai-voice-server-cuda.exe` | onedir (CUDA) |
+| Windows  | `backend\dist\alexander-ai-voice-server.exe`                      | onefile (CPU) |
 
 If none exist, run `python backend/build_binary.py` and wait for it to finish (can take 5-20 min). Fail with a clear error if the build itself fails. `--skip-build` flag forces "error out if no binary" instead of building.
 
@@ -136,7 +136,7 @@ On timeout: cancel the SSE stream, mark the row `timeout`, and continue to the n
 ```json
 {
   "platform": "darwin-arm64",
-  "binary": "/abs/path/voicebox-server",
+  "binary": "/abs/path/alexander-ai-voice-server",
   "binary_size_mb": 612,
   "started_at": "2026-04-16T12:34:56Z",
   "finished_at": "...",
@@ -160,7 +160,7 @@ On timeout: cancel the SSE stream, mark the row `timeout`, and continue to the n
 Companion `./results/e2e-<...>.md`:
 
 ```
-# Voicebox E2E — darwin-arm64 — 2026-04-16 12:34
+# Alexander AI Voice E2E — darwin-arm64 — 2026-04-16 12:34
 
 | Engine              | Size | Status | Elapsed | Error |
 |---------------------|------|--------|---------|-------|

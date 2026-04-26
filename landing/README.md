@@ -1,6 +1,6 @@
-# Voicebox Landing Page
+# Alexander AI Voice Landing Page
 
-Landing page for voicebox.sh - a modern Next.js 16 application.
+Landing page for alexanderaivoice.com - a modern Next.js 16 application.
 
 ## Tech Stack
 
@@ -65,7 +65,7 @@ Replace `USERNAME` in `src/lib/constants.ts` with your actual GitHub username.
    - Install dependencies with `bun install`
    - Build with `bun run build`
    - Start with `bun run start`
-5. Configure custom domain `voicebox.sh` in Railway settings
+5. Configure custom domain `alexanderaivoice.com` in Railway settings
 
 ## Project Structure
 

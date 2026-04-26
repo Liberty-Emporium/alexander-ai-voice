@@ -27,11 +27,11 @@ def build_server(cuda=False):
 
     Args:
         cuda: If True, build with CUDA support and name the binary
-              voicebox-server-cuda instead of voicebox-server.
+              alexander-ai-voice-server-cuda instead of alexander-ai-voice-server.
     """
     backend_dir = Path(__file__).parent
 
-    binary_name = "voicebox-server-cuda" if cuda else "voicebox-server"
+    binary_name = "alexander-ai-voice-server-cuda" if cuda else "alexander-ai-voice-server"
 
     # PyInstaller arguments
     # CUDA builds use --onedir so we can split the output into two archives:
@@ -484,7 +484,7 @@ def build_shim():
     """Build the voicebox-mcp stdio shim as a tiny standalone binary.
 
     This is the bridge for MCP clients that only speak stdio — it proxies
-    JSON-RPC to the main voicebox-server's /mcp endpoint. Keep it small: no
+    JSON-RPC to the main alexander-ai-voice-server's /mcp endpoint. Keep it small: no
     torch, no ML deps, just httpx + asyncio.
     """
     backend_dir = Path(__file__).parent
@@ -575,7 +575,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--cuda",
         action="store_true",
-        help="Build CUDA-enabled binary (voicebox-server-cuda)",
+        help="Build CUDA-enabled binary (alexander-ai-voice-server-cuda)",
     )
     parser.add_argument(
         "--shim",

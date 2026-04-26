@@ -44,7 +44,7 @@ export default function OgPreview() {
                 color: 'hsl(30, 10%, 94%)',
               }}
             >
-              Voicebox
+              Alexander AI Voice
             </h1>
             <p
               style={{

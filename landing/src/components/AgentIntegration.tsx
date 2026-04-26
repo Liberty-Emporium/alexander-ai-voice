@@ -217,7 +217,7 @@ function CodePanel() {
             01
           </span>
           <span className="text-[10px] font-mono text-ink-faint/70 uppercase tracking-wider">
-            Add Voicebox to your MCP config
+            Add Alexander AI Voice to your MCP config
           </span>
         </div>
         <pre className="text-[11px] font-mono text-ink-dull leading-relaxed overflow-x-auto">

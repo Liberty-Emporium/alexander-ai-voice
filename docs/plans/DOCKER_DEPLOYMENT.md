@@ -5,7 +5,7 @@
 
 ## Overview
 
-Docker support makes Voicebox easier to deploy, especially for:
+Docker support makes Alexander AI Voice easier to deploy, especially for:
 
 - **Consistent Environments**: Same setup across dev/staging/prod
 - **GPU Passthrough**: Easy NVIDIA/AMD GPU access
@@ -20,16 +20,16 @@ Docker support makes Voicebox easier to deploy, especially for:
 ```bash
 # CPU-only version
 docker run -p 8000:8000 -v voicebox-data:/app/data \
-  ghcr.io/jamiepine/voicebox:latest
+  ghcr.io/Liberty-Emporium/alexander-ai-voice:latest
 
 # NVIDIA GPU version
 docker run --gpus all -p 8000:8000 -v voicebox-data:/app/data \
-  ghcr.io/jamiepine/voicebox:latest-cuda
+  ghcr.io/Liberty-Emporium/alexander-ai-voice:latest-cuda
 
 # AMD GPU version (experimental)
 docker run --device=/dev/kfd --device=/dev/dri -p 8000:8000 \
   -v voicebox-data:/app/data \
-  ghcr.io/jamiepine/voicebox:latest-rocm
+  ghcr.io/Liberty-Emporium/alexander-ai-voice:latest-rocm
 ```
 
 Then open: `http://localhost:8000`
@@ -43,7 +43,7 @@ version: '3.8'
 
 services:
   voicebox:
-    image: ghcr.io/jamiepine/voicebox:latest-cuda
+    image: ghcr.io/Liberty-Emporium/alexander-ai-voice:latest-cuda
     ports:
       - "8000:8000"
     volumes:
@@ -289,7 +289,7 @@ docker run -v /path/to/models:/models \
 
 ## Environment Variables
 
-Configure Voicebox via environment variables:
+Configure Alexander AI Voice via environment variables:
 
 ```bash
 docker run -e TTS_MODE=local \
@@ -325,7 +325,7 @@ version: '3.8'
 
 services:
   voicebox:
-    image: ghcr.io/jamiepine/voicebox:latest-cuda
+    image: ghcr.io/Liberty-Emporium/alexander-ai-voice:latest-cuda
     container_name: voicebox
     restart: unless-stopped
     ports:
@@ -401,9 +401,9 @@ Full stack with reverse proxy and monitoring:
 version: '3.8'
 
 services:
-  # Main Voicebox app
+  # Main Alexander AI Voice app
   voicebox:
-    image: ghcr.io/jamiepine/voicebox:latest-cuda
+    image: ghcr.io/Liberty-Emporium/alexander-ai-voice:latest-cuda
     restart: unless-stopped
     volumes:
       - voicebox-data:/app/data
@@ -468,7 +468,7 @@ volumes:
    docker run --gpus all -d -p 80:8000 \
      -v voicebox-data:/app/data \
      --restart unless-stopped \
-     ghcr.io/jamiepine/voicebox:latest-cuda
+     ghcr.io/Liberty-Emporium/alexander-ai-voice:latest-cuda
    ```
 
 ### DigitalOcean
@@ -513,7 +513,7 @@ Create `fly.toml`:
 app = "voicebox"
 
 [build]
-  image = "ghcr.io/jamiepine/voicebox:latest"
+  image = "ghcr.io/Liberty-Emporium/alexander-ai-voice:latest"
 
 [[services]]
   http_checks = []
@@ -748,7 +748,7 @@ Help improve Docker support:
 1. Test on different platforms (AMD GPU, ARM64, etc.)
 2. Submit Dockerfile optimizations
 3. Share deployment configurations
-4. Report issues: [GitHub Issues](https://github.com/jamiepine/voicebox/issues)
+4. Report issues: [GitHub Issues](https://github.com/Liberty-Emporium/alexander-ai-voice/issues)
 
 ## Resources
 

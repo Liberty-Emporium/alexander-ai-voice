@@ -154,7 +154,7 @@ def patch_transformers_mistral_regex():
     variant. That call raises on ``HF_HUB_OFFLINE=1`` and on plain network
     failures, killing unrelated loads (Qwen TTS, TADA, etc.).
 
-    Voicebox never loads Mistral models, so the rewrite the function would
+    Alexander AI Voice never loads Mistral models, so the rewrite the function would
     apply is a no-op for us anyway. Wrap the method so any exception from the
     metadata lookup returns the tokenizer unchanged — matching the success-path
     behavior for non-Mistral repos (transformers 4.57.3,

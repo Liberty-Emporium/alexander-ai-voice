@@ -96,8 +96,8 @@ def find_binary() -> Optional[Path]:
     is_win = platform.system() == "Windows"
     exe = ".exe" if is_win else ""
     candidates = [
-        DIST_DIR / "voicebox-server-cuda" / f"voicebox-server-cuda{exe}",
-        DIST_DIR / f"voicebox-server{exe}",
+        DIST_DIR / "alexander-ai-voice-server-cuda" / f"alexander-ai-voice-server-cuda{exe}",
+        DIST_DIR / f"alexander-ai-voice-server{exe}",
     ]
     for c in candidates:
         if c.exists() and c.is_file():
@@ -381,7 +381,7 @@ def write_reports(
     json_path.write_text(json.dumps(doc, indent=2))
 
     lines = [
-        f"# Voicebox E2E — {plat} — {started_at.strftime('%Y-%m-%d %H:%M UTC')}",
+        f"# Alexander AI Voice E2E — {plat} — {started_at.strftime('%Y-%m-%d %H:%M UTC')}",
         "",
         f"Binary: `{binary}`  ",
         f"Elapsed: {doc['elapsed_seconds']:.1f}s",
@@ -424,8 +424,8 @@ def write_reports(
 # ── Main ─────────────────────────────────────────────────────────────
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Voicebox E2E model generation test")
-    p.add_argument("--binary", type=Path, help="Path to voicebox-server binary (overrides auto-detect)")
+    p = argparse.ArgumentParser(description="Alexander AI Voice E2E model generation test")
+    p.add_argument("--binary", type=Path, help="Path to alexander-ai-voice-server binary (overrides auto-detect)")
     p.add_argument("--skip-build", action="store_true", help="Error if binary missing instead of building")
     p.add_argument(
         "--reference-wav",

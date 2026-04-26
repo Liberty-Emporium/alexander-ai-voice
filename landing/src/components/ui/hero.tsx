@@ -22,7 +22,7 @@ export function Hero({ title, description, actions, className, showLogo = true }
             <div className="flex lg:justify-start justify-center mb-6">
               <Image
                 src="/voicebox-logo-2.png"
-                alt="Voicebox Logo"
+                alt="Alexander AI Voice Logo"
                 width={1024}
                 height={1024}
                 className="w-32 sm:w-40 md:w-48 h-auto"

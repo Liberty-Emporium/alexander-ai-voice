@@ -23,11 +23,11 @@ logger = logging.getLogger(__name__)
 
 
 def build_mcp_server() -> FastMCP:
-    """Create the FastMCP instance with Voicebox tools registered."""
+    """Create the FastMCP instance with Alexander AI Voice tools registered."""
     mcp = FastMCP(
         name="voicebox",
         instructions=(
-            "Voicebox is a local voice I/O layer. Use `voicebox.speak` to "
+            "Alexander AI Voice is a local voice I/O layer. Use `voicebox.speak` to "
             "play text in a voice profile, `voicebox.transcribe` for "
             "audio→text, and the `list_*` tools to discover profiles and "
             "captures."
@@ -63,7 +63,7 @@ def mount_into(
 def compose_lifespan(*lifespans):
     """Combine multiple async context managers into a single FastAPI lifespan.
 
-    Used by ``create_app`` to run the existing Voicebox startup/shutdown
+    Used by ``create_app`` to run the existing Alexander AI Voice startup/shutdown
     together with FastMCP's session manager (which MUST run in the
     ASGI lifespan for Streamable HTTP to work).
     """

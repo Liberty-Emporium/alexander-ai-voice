@@ -1,4 +1,4 @@
-# Voicebox Backend
+# Alexander AI Voice Backend
 
 FastAPI server powering voice cloning, speech generation, and audio processing. Runs locally as a Tauri sidecar or standalone via `python -m backend.main`.
 

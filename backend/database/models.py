@@ -207,7 +207,7 @@ class CaptureSettings(Base):
     # Default OFF — opting in is what triggers the macOS Input Monitoring TCC
     # prompt. We deliberately don't spawn the global keyboard tap until the
     # user flips this on so a fresh-install user doesn't see a scary
-    # "Voicebox would like to receive keystrokes from any application" dialog
+    # "Alexander AI Voice would like to receive keystrokes from any application" dialog
     # before they've even opened the Captures tab.
     hotkey_enabled = Column(Boolean, nullable=False, default=False)
     # Lists of keytap key names (e.g. "MetaRight", "ControlRight"). Right-hand
@@ -239,7 +239,7 @@ class MCPClientBinding(Base):
 
     Lets users bind distinct voices to distinct agents — e.g. Claude Code
     speaks in "Morgan," Cursor in "Scarlett." The MCP client identifies
-    itself via the ``X-Voicebox-Client-Id`` HTTP header; direct-HTTP
+    itself via the ``X-Alexander AI Voice-Client-Id`` HTTP header; direct-HTTP
     clients set it in their MCP config's ``headers`` block, the stdio
     shim forwards it from the ``VOICEBOX_CLIENT_ID`` env var.
     """

@@ -2,12 +2,12 @@
 
 Some MCP clients only speak stdio. They spawn this binary, we pipe each
 JSON-RPC message to ``http://127.0.0.1:<port>/mcp/``, and stream the
-server's response back. The Voicebox server does all the real work.
+server's response back. Alexander AI Voice server does all the real work.
 
 Environment variables:
-  VOICEBOX_PORT       Voicebox server port (default 17493).
+  VOICEBOX_PORT       Alexander AI Voice server port (default 17493).
   VOICEBOX_HOST       Host (default 127.0.0.1).
-  VOICEBOX_CLIENT_ID  Forwarded as X-Voicebox-Client-Id on every request.
+  VOICEBOX_CLIENT_ID  Forwarded as X-Alexander AI Voice-Client-Id on every request.
 
 Stdout is JSON-RPC only. Diagnostics go to stderr.
 Exit 0 on clean EOF, 1 on transport error, 2 if backend never answers.
@@ -24,7 +24,7 @@ from typing import Any
 import httpx
 
 
-CLIENT_ID_HEADER = "X-Voicebox-Client-Id"
+CLIENT_ID_HEADER = "X-Alexander AI Voice-Client-Id"
 SESSION_HEADER = "mcp-session-id"
 HEALTH_TIMEOUT_S = 30.0
 DEFAULT_PORT = 17493
@@ -122,7 +122,7 @@ async def _handle_request(
                     "error": {
                         "code": -32000,
                         "message": (
-                            f"Voicebox MCP proxy got HTTP {response.status_code}"
+                            f"Alexander AI Voice MCP proxy got HTTP {response.status_code}"
                         ),
                     },
                 }
@@ -164,7 +164,7 @@ async def _run() -> int:
     async with httpx.AsyncClient(timeout=httpx.Timeout(300.0)) as client:
         if not await _wait_for_backend(client, health_url):
             _err(
-                f"timed out waiting for Voicebox at {health_url} — is the app open?"
+                f"timed out waiting for Alexander AI Voice at {health_url} — is the app open?"
             )
             return 2
 

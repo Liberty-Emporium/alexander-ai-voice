@@ -57,7 +57,7 @@ export default function Home() {
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<img
 							src="/voicebox-logo-app.webp"
-							alt="Voicebox"
+							alt="Alexander AI Voice"
 							className="h-full w-full object-contain"
 						/>
 					</div>
@@ -163,7 +163,7 @@ export default function Home() {
 				<div className="mx-auto max-w-4xl px-6">
 					<div className="text-center mb-12">
 						<h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl mb-4">
-							Download Voicebox
+							Download Alexander AI Voice
 						</h2>
 						<p className="text-muted-foreground">
 							Available for macOS, Windows, and Linux. No dependencies required.

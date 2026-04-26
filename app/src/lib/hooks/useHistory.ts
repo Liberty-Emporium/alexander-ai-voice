@@ -56,7 +56,7 @@ export function useExportGeneration() {
 
       await platform.filesystem.saveFile(filename, blob, [
         {
-          name: 'Voicebox Generation',
+          name: 'Alexander AI Voice Generation',
           extensions: ['zip'],
         },
       ]);

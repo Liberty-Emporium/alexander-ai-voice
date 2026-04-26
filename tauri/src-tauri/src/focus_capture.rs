@@ -25,7 +25,7 @@
 //!
 //! PID + bundle id + role are all captured for diagnostics — the bundle
 //! id lets step 6 (internal direct injection) detect "focus was inside
-//! Voicebox itself" and short-circuit the synthetic-paste path. On
+//! Alexander AI Voice itself" and short-circuit the synthetic-paste path. On
 //! Windows, `bundle_id` holds the lowercased exe basename (`"voicebox.exe"`)
 //! since there's no equivalent of macOS' reverse-DNS bundle identifier.
 
