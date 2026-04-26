@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body className="overflow-x-hidden">
         <div className="relative min-h-screen bg-background font-sans">{children}</div>
       </body>
     </html>
