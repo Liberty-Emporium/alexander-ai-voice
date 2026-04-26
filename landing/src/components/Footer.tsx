@@ -126,16 +126,16 @@ export function Footer() {
 
           {/* Also by */}
           <div>
-            <h4 className="text-sm font-semibold mb-3">Our Apps</h4>
+            <h4 className="text-sm font-semibold mb-3">Alexander AI Integrated Solutions</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="https://jay-portfolio-production.up.railway.app"
+                  href="https://alexanderaiis.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors"
                 >
-                  EcDash
+                  alexanderaiis.com
                 </a>
               </li>
               <li>
@@ -164,7 +164,7 @@ export function Footer() {
 
         <div className="border-t border-border pt-6">
           <p className="text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Alexander AI Voice. Open source under MIT license.
+            &copy; {new Date().getFullYear()} Alexander AI Integrated Solutions. Open source under MIT license.
           </p>
         </div>
       </div>
