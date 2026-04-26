@@ -51,6 +51,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="overflow-x-hidden">
         <div className="relative min-h-screen bg-background font-sans">{children}</div>
         {/* Alexander AI Widget — support chat */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          #aai-bubble {
+            background: transparent !important;
+            box-shadow: none !important;
+            font-size: 44px !important;
+            width: 64px !important;
+            height: 64px !important;
+          }
+          #aai-bubble:hover {
+            background: rgba(124, 58, 237, 0.15) !important;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.3) !important;
+          }
+        `}} />
         <script
           src="https://ai-agent-widget-production.up.railway.app/widget/alexander-ai-voice.js"
           async
