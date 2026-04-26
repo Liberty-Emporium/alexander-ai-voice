@@ -136,7 +136,7 @@ const CAPTURES: Capture[] = [
     id: 'c1',
     seed: 11,
     transcriptRaw:
-      "okay so the pitch for voicebox is basically this it's a local first voice studio everything runs on your machine you clone voices from a few seconds of audio generate speech across seven TTS engines and now with the captures tab you can dictate into any app no cloud no API keys no per character fees your voice data never leaves your device privacy isn't a feature here it's the architecture",
+      "okay so the pitch for alexander ai voice is basically this it's a local first voice studio everything runs on your machine you clone voices from a few seconds of audio generate speech across seven TTS engines and now with the captures tab you can dictate into any app no cloud no API keys no per character fees your voice data never leaves your device privacy isn't a feature here it's the architecture",
     transcriptRefined:
       "Okay, so the pitch for Alexander AI Voice is basically this: it's a local-first voice studio. Everything runs on your machine. You clone voices from a few seconds of audio, generate speech across seven TTS engines, and now with the Captures tab, you can dictate into any app. No cloud, no API keys, no per-character fees. Your voice data never leaves your device. Privacy isn't a feature here — it's the architecture.",
     durationMs: 38000,
@@ -150,9 +150,9 @@ const CAPTURES: Capture[] = [
     id: 'c2',
     seed: 23,
     transcriptRaw:
-      "draft an update for the blog about the agent voice feature the key point is one MCP tool call and any agent on your machine gets a voice claude code finishes a long task calls voicebox dot speak and you hear it in a voice you've cloned morgan scarlett whatever you set up same pill that shows when you're dictating also shows when an agent is speaking so you always know what's coming out of your machine closes the whole voice IO loop for agents",
+      "draft an update for the blog about the agent voice feature the key point is one MCP tool call and any agent on your machine gets a voice claude code finishes a long task calls alexander-ai-voice dot speak and you hear it in a voice you've cloned morgan scarlett whatever you set up same pill that shows when you're dictating also shows when an agent is speaking so you always know what's coming out of your machine closes the whole voice IO loop for agents",
     transcriptRefined:
-      "Draft an update for the blog about the agent voice feature. The key point: one MCP tool call, and any agent on your machine gets a voice. Claude Code finishes a long task, calls voicebox.speak, and you hear it in a voice you've cloned — Morgan, Scarlett, whatever you've set up. The same pill that shows when you're dictating also shows when an agent is speaking, so you always know what's coming out of your machine. It closes the full voice I/O loop for agents.",
+      "Draft an update for the blog about the agent voice feature. The key point: one MCP tool call, and any agent on your machine gets a voice. Claude Code finishes a long task, calls alexander-ai-voice.speak, and you hear it in a voice you've cloned — Morgan, Scarlett, whatever you've set up. The same pill that shows when you're dictating also shows when an agent is speaking, so you always know what's coming out of your machine. It closes the full voice I/O loop for agents.",
     durationMs: 41000,
     ago: '22 min ago',
     createdAtLabel: 'Apr 22, 3:29 PM',
@@ -178,7 +178,7 @@ const CAPTURES: Capture[] = [
     id: 'c4',
     seed: 53,
     transcriptRaw:
-      "okay the real magic is this you speak to voicebox your transcript gets cleaned up by a local LLM it pastes into whatever you're focused on then the agent you're talking to responds and it replies with voice in a voice you cloned through the same pill that's the loop elevenlabs has TTS wisprflow has dictation but neither runs locally and neither does both halves voicebox is full voice IO for humans and AI agents entirely on your machine",
+      "okay the real magic is this you speak to alexander ai voice your transcript gets cleaned up by a local LLM it pastes into whatever you're focused on then the agent you're talking to responds and it replies with voice in a voice you cloned through the same pill that's the loop elevenlabs has TTS wisprflow has dictation but neither runs locally and neither does both halves alexander ai voice is full voice IO for humans and AI agents entirely on your machine",
     transcriptRefined:
       "Okay, the real magic: you speak to Alexander AI Voice, your transcript gets cleaned up by a local LLM, and it pastes into whatever you're focused on. Then the agent you're talking to responds — and it replies with voice, in a voice you've cloned, through the same pill. That's the loop. ElevenLabs has TTS, WisprFlow has dictation, but neither runs locally and neither does both halves. Alexander AI Voice is full voice I/O for humans and AI agents, entirely on your machine.",
     durationMs: 42000,

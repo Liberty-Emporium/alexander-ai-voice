@@ -88,8 +88,8 @@ export async function getLatestRelease(): Promise<ReleaseInfo> {
         macIntel:
           downloadLinks.macIntel || `${baseUrl}/Alexander AI Voice_${version.replace('v', '')}_x64.dmg`,
         windows:
-          downloadLinks.windows || `${baseUrl}/voicebox_${version.replace('v', '')}_x64_en-US.msi`,
-        linux: downloadLinks.linux || `${baseUrl}/voicebox_x86_64-unknown-linux-gnu.AppImage`,
+          downloadLinks.windows || `${baseUrl}/alexander-ai-voice_${version.replace('v', '')}_x64_en-US.msi`,
+        linux: downloadLinks.linux || `${baseUrl}/alexander-ai-voice_x86_64-unknown-linux-gnu.AppImage`,
       },
     };
 
