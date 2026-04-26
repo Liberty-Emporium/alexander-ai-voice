@@ -100,7 +100,18 @@ export async function getLatestRelease(): Promise<ReleaseInfo> {
     return releaseInfo;
   } catch (error) {
     console.error('Failed to fetch latest release:', error);
-    throw error;
+    // Graceful fallback — no releases published yet, point to releases page
+    const releasesPage = `https://github.com/${GITHUB_REPO}/releases`;
+    return {
+      version: 'coming-soon',
+      totalDownloads: 0,
+      downloadLinks: {
+        macArm: releasesPage,
+        macIntel: releasesPage,
+        windows: releasesPage,
+        linux: releasesPage,
+      },
+    };
   }
 }
 
@@ -186,6 +197,6 @@ export async function getStarCount(): Promise<number> {
   } catch (error) {
     console.error('Failed to fetch star count:', error);
     if (cachedStarCount !== null) return cachedStarCount;
-    throw error;
+    return 0;  // graceful fallback
   }
 }

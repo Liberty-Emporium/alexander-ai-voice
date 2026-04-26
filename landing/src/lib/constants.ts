@@ -4,9 +4,9 @@ export const LATEST_VERSION = 'v0.1.0';
 
 export const GITHUB_REPO = 'https://github.com/Liberty-Emporium/alexander-ai-voice';
 export const GITHUB_RELEASES_PAGE = `${GITHUB_REPO}/releases`;
-export const DONATE_URL = 'https://buymeacoffee.com/Liberty-Emporium';
-export const SPONSOR_CHECKOUT_URL = 'https://buy.stripe.com/eVqdRad3n16ubcqf201Jm00';
-export const SPONSOR_CONTACT_EMAIL = 'jamie@spacedrive.com';
+export const DONATE_URL = 'https://alexanderaiis.com';
+export const SPONSOR_CHECKOUT_URL = 'https://alexanderaiis.com';
+export const SPONSOR_CONTACT_EMAIL = 'jay@alexanderaiis.com';
 
 export const DOWNLOAD_LINKS = {
   macArm: GITHUB_RELEASES_PAGE,
