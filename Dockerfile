@@ -73,11 +73,14 @@ RUN mkdir -p /app/data/generations /app/data/profiles /app/data/cache \
 USER voicebox
 
 # Expose the API port
-EXPOSE 17493
+# Railway (and other PaaS) inject PORT at runtime; fall back to 17493 for local/Docker use
+ENV PORT=17493
+EXPOSE ${PORT}
 
 # Health check — auto-restart if the server hangs
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 --start-period=60s \
-    CMD curl -f http://localhost:17493/health || exit 1
+    CMD curl -f http://localhost:${PORT}/health || exit 1
 
 # Start the FastAPI server
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "17493"]
+# Use a shell form so ${PORT} is expanded from the runtime environment
+CMD uvicorn backend.main:app --host 0.0.0.0 --port ${PORT}
