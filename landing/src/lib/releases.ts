@@ -16,6 +16,17 @@ export interface ReleaseInfo {
 const GITHUB_REPO = 'jamiepine/voicebox';
 const GITHUB_API_BASE = 'https://api.github.com';
 
+function githubHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github.v3+json',
+  };
+  const token = process.env.GITHUB_TOKEN;
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  return headers;
+}
+
 // Cache for release info (in-memory cache, resets on server restart)
 let cachedReleaseInfo: ReleaseInfo | null = null;
 let cacheTimestamp: number = 0;
@@ -38,9 +49,7 @@ export async function getLatestRelease(): Promise<ReleaseInfo> {
   try {
     const response = await fetch(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/releases/latest`, {
       cache: 'no-store',
-      headers: {
-        Accept: 'application/vnd.github.v3+json',
-      },
+      headers: githubHeaders(),
     });
 
     if (!response.ok) {
@@ -138,7 +147,7 @@ async function getTotalDownloads(): Promise<number> {
         `${GITHUB_API_BASE}/repos/${GITHUB_REPO}/releases?per_page=100&page=${page}`,
         {
           cache: 'no-store',
-          headers: { Accept: 'application/vnd.github.v3+json' },
+          headers: githubHeaders(),
         },
       );
 
@@ -179,9 +188,7 @@ export async function getStarCount(): Promise<number> {
   try {
     const response = await fetch(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}`, {
       next: { revalidate: 600 },
-      headers: {
-        Accept: 'application/vnd.github.v3+json',
-      },
+      headers: githubHeaders(),
     });
 
     if (!response.ok) {
