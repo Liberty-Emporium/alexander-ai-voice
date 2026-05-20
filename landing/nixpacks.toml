@@ -5,7 +5,7 @@ nixPkgs = ["nodejs_20", "bun"]
 cmds = ["bun install"]
 
 [phases.build]
-cmds = ["bun run build"]
+cmds = ["rm -rf .next", "bun run build"]
 
 [start]
 cmd = "bun run start"

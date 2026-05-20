@@ -14,6 +14,20 @@ export interface ReleaseInfo {
 
 // Point to upstream repo for releases since this is a fork
 const GITHUB_REPO = 'jamiepine/voicebox';
+
+function getFallbackReleaseInfo(): ReleaseInfo {
+  const releasesPage = `https://github.com/${GITHUB_REPO}/releases`;
+  return {
+    version: 'coming-soon',
+    totalDownloads: 0,
+    downloadLinks: {
+      macArm: releasesPage,
+      macIntel: releasesPage,
+      windows: releasesPage,
+      linux: releasesPage,
+    },
+  };
+}
 const GITHUB_API_BASE = 'https://api.github.com';
 
 function githubHeaders(): Record<string, string> {
@@ -53,6 +67,11 @@ export async function getLatestRelease(): Promise<ReleaseInfo> {
     });
 
     if (!response.ok) {
+      // 404 means no releases yet — silent fallback, not an error
+      if (response.status === 404) {
+        console.log('No GitHub releases yet — using fallback links');
+        return getFallbackReleaseInfo();
+      }
       throw new Error(`GitHub API error: ${response.status}`);
     }
 
@@ -110,18 +129,7 @@ export async function getLatestRelease(): Promise<ReleaseInfo> {
     return releaseInfo;
   } catch (error) {
     console.error('Failed to fetch latest release:', error);
-    // Graceful fallback — no releases published yet, point to releases page
-    const releasesPage = `https://github.com/${GITHUB_REPO}/releases`;
-    return {
-      version: 'coming-soon',
-      totalDownloads: 0,
-      downloadLinks: {
-        macArm: releasesPage,
-        macIntel: releasesPage,
-        windows: releasesPage,
-        linux: releasesPage,
-      },
-    };
+    return getFallbackReleaseInfo();
   }
 }
 
