@@ -5,7 +5,14 @@ nixPkgs = ["nodejs_20", "bun"]
 cmds = ["bun install"]
 
 [phases.build]
-cmds = ["rm -rf .next", "bun run build"]
+# Next.js standalone output only bundles server.js — static assets must be
+# copied manually so /_next/static/* and /public/* are served correctly.
+cmds = [
+  "rm -rf .next",
+  "bun run build",
+  "cp -r .next/static .next/standalone/.next/static",
+  "cp -r public .next/standalone/public"
+]
 
 [start]
 cmd = "bun run start"
